@@ -1,0 +1,25 @@
+
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({
+  'id': ['id1', 'id2', 'id3'],
+  'tag': ['tag1', 'tag2', 'tag3'],
+  'text': ['text1', 'text2', 'text3'],
+  'embeddings': np.random.rand(3, 1536).tolist()
+})
+table.insert(df)
+and the 2 small peragrf is out put else
+
+schema = {
+  'columns':[
+    {'name': 'id', 'pytype': 'str'},
+    {'name': 'tag', 'pytype': 'str'},
+    {'name': 'text', 'pytype': 'bytes'},
+    {'name': 'embeddings', 'vectorIndex': {
+      'type': 'hnsw',
+      'metric': 'L2',
+      'dims': 1536 }}
+  ]
+}
+table = session.create_table('documents', schema)
